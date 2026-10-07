@@ -1,6 +1,7 @@
 using UnityEngine;
 
 public class Enemy : Entity {
+    [SerializeField] private FlashEffect flashEffect;
     private void Start() {
         OnDamage += FreezeOnDamage;
         OnDeath += Death;
@@ -10,5 +11,6 @@ public class Enemy : Entity {
     }
     private void FreezeOnDamage() {
         FreezeFrame.Instance.Freeze(.2f);
+        flashEffect.Flash();
     }
 }

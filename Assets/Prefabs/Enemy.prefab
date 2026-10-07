@@ -98,6 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
+  flashEffect: {fileID: 188178610942148681}
 --- !u!114 &5582792100292657661
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -332,7 +333,7 @@ LineRenderer:
     textureScale: {x: 1, y: 1}
     shadowBias: 0.5
     generateLightingData: 0
-  m_MaskInteraction: 0
+  m_MaskInteraction: 2
   m_UseWorldSpace: 1
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
@@ -346,6 +347,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4634324782171751716}
   - component: {fileID: 6071298585825820680}
+  - component: {fileID: 188178610942148681}
   m_Layer: 6
   m_Name: Sprite
   m_TagString: Untagged
@@ -420,6 +422,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &188178610942148681
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5313786800937397576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3177bf67703aa7d4fb2ca7012b1d4d53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashMaterial: {fileID: 2100000, guid: 2d4bf80808cd817498935bc901dc7693, type: 2}
+  duration: 0.1
 --- !u!1 &5622509626235427958
 GameObject:
   m_ObjectHideFlags: 0
