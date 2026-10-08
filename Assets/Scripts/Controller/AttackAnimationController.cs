@@ -8,7 +8,7 @@ public class AttackAnimationController : MonoBehaviour {
     public static int Attack = Animator.StringToHash("attack");
     public static int Idle = Animator.StringToHash("idle");
 
-    private void Start() {
+    private void OnEnable() {
         attackController.OnAttackReady += ReadyAnimation;
         attackController.OnAttackRelease += AttackAnimation;
         attackController.OnAttackCooldown += IdleAnimation;

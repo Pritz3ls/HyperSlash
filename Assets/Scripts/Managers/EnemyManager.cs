@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Data.SqlTypes;
 using UnityEngine;
 
 public class EnemyManager : MonoBehaviour {
     [SerializeField] private int maxEnemySpawn = 8;
     [SerializeField] private int enemyPoolCount = 20;
     [SerializeField] private GameObject enemyGameObject;
+    [SerializeField] private bool stop = true;
     private List<GameObject> enemyPool = new List<GameObject>();
 
     float screenX;
@@ -20,10 +22,28 @@ public class EnemyManager : MonoBehaviour {
         screenX = cameraSize * Camera.main.aspect;
 
         InitializePool();
+        GameManager.Instance.OnGameStart += StartEnemyManager;
+        GameManager.Instance.OnGameRestart += NukeCurrentEnemy;
+        GameManager.Instance.OnGameEnd += StopEnemyManager;
         InvokeRepeating("SpawnNewEnenmy", 1, 5);
     }
 
+    private void StartEnemyManager() {
+        stop = false;
+    }
+    private void StopEnemyManager() {
+        stop = true;
+    }
+
+    private void Update() {
+        if (Input.GetKeyDown(KeyCode.Space)) {
+            NukeCurrentEnemy();
+        }
+    }
+
     private void SpawnNewEnenmy() {
+        if (stop) return;
+
         int scoreRelativeSpawn = Mathf.RoundToInt(ScoreManager.Instance.GetCurrentScore / 5);
         int randomCount = currentRelativeSpawnCount + scoreRelativeSpawn;
         randomCount = Mathf.Clamp(randomCount, 1, maxEnemySpawn);
@@ -75,5 +95,18 @@ public class EnemyManager : MonoBehaviour {
     void OnDrawGizmosSelected() {
         Vector2 boxSize = new Vector2(screenX, screenY);
         Gizmos.DrawWireCube(transform.position, boxSize);
+    }
+
+    public void NukeCurrentEnemy() {
+        foreach (var enemy in enemyPool) {
+            if (enemy.activeInHierarchy) {
+                if (enemy.TryGetComponent<Enemy>(out Enemy comp)) {
+                    comp.Sepuku();
+                }
+            }
+        }
+        FreezeFrame.Instance.NuclearFrame();
+        Debug.Log("Nuking enemy");
+        StartEnemyManager();
     }
 }

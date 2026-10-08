@@ -5,6 +5,8 @@ public class AttackController : MonoBehaviour {
     [SerializeField] private float attackSpeed;
     [SerializeField] public bool isAttacking;
     [SerializeField] private LayerMask damageMask;
+    [SerializeField] public Vector2 attackOffset;
+    [SerializeField] public float attackDamageRadius = 0.5f;
 
     public event Action OnAttackReady;
     public event Action OnAttackRelease;
@@ -13,10 +15,10 @@ public class AttackController : MonoBehaviour {
     public void Attack(Vector2 targetPosition) {
         transform.position = Vector2.MoveTowards(transform.position, targetPosition, attackSpeed * Time.deltaTime);
         if (isAttacking) {
-            Collider2D col = Physics2D.OverlapCircle(transform.position, .5f, damageMask);
+            Collider2D col = Physics2D.OverlapCircle((Vector2)transform.position + attackOffset, attackDamageRadius, damageMask);
             if (col == null) return;
             if (col.TryGetComponent<IDamageable>(out IDamageable component)) {
-                component.TakeDamage(5);
+                component.TakeDamage(5, transform.position);
             }
         }
     }
@@ -32,5 +34,8 @@ public class AttackController : MonoBehaviour {
     }
     public void AttackCooldownEvent() {
         OnAttackCooldown?.Invoke();
+    }
+    void OnDrawGizmos() {
+        Gizmos.DrawWireSphere((Vector2)transform.position + attackOffset, attackDamageRadius);
     }
 }

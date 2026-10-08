@@ -4,6 +4,7 @@ using UnityEngine;
 public class PlayerController : AttackController {
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private AttackLineIndicator attackLineIndicator;
+    Vector2 lastPosition;
     Vector2 mouseWorldPos;
     Vector2 targetPosition;
 
@@ -21,6 +22,7 @@ public class PlayerController : AttackController {
             Xval = transform.position.x - mouseWorldPos.x;
             attackLineIndicator.SetAttackLine(transform.position, mouseWorldPos);
         } else if (Input.GetMouseButtonUp(0)) {
+            lastPosition = transform.position;
             targetPosition = mouseWorldPos;
             AttackReleaseEvent();
             isAttacking = true;
@@ -43,4 +45,5 @@ public class PlayerController : AttackController {
     }
 
     public bool IsAttacking => isAttacking;
+    public Vector2 GetLastPosition => lastPosition;
 }

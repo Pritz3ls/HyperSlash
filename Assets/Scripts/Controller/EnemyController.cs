@@ -8,6 +8,7 @@ public class EnemyController : AttackController {
     [SerializeField] private float timeToAttack = 5f;
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private AttackLineIndicator attackLineIndicator;
+    [SerializeField] private GameObject attackIndicator;
 
     float elapsedTimeSinceLastAttack = 0;
     float Xval;
@@ -19,13 +20,14 @@ public class EnemyController : AttackController {
     bool headsup = false;
 
     void Start() {
-        playerTransform = GameObject.FindAnyObjectByType<Player>().transform;
+        playerTransform = GameManager.Instance.GetPlayer.transform;
         elapsedTimeSinceLastAttack = timeToAttack;
     }
     void OnDisable() {
         attackLineIndicator.ResetAttackLine();
         headsup = false;
         isAttacking = false;
+        attackIndicator.SetActive(false);
     }
     void Update() {
         if (isAttacking) {
@@ -33,7 +35,10 @@ public class EnemyController : AttackController {
                 isAttacking = false;
                 headsup = isAttacking;
                 elapsedTimeSinceLastAttack = timeToAttack;
+
                 attackLineIndicator.ResetAttackLine();
+                attackIndicator.SetActive(false);
+
                 AttackCooldownEvent();
             } else {
                 Attack(attackPosition);
@@ -41,15 +46,17 @@ public class EnemyController : AttackController {
             return;
         }
 
-        if (OnRange && !OnCooldown && !headsup) {
-            StartCoroutine(AttackHeadsUp());
-            return;
-        }
-
-        if (headsup) return;
-        Follow();
         AttackCooldown();
-        targetPosition = GetTargetPosition();
+        if (playerTransform == null) return;
+        if (playerTransform.gameObject.activeInHierarchy) {
+            if (OnRange && !OnCooldown && !headsup) {
+                StartCoroutine(AttackHeadsUp());
+                return;
+            }
+            if (headsup) return;
+            Follow();
+            targetPosition = GetTargetPosition();
+        }
 
         spriteRenderer.flipX = Xval > 0.01f ? true : false;
         Xval = transform.position.x - targetPosition.x;
@@ -60,6 +67,8 @@ public class EnemyController : AttackController {
         ReadyAttackEvent();
         attackPosition = GetTargetPosition();
         attackLineIndicator.SetAttackLine(transform.position, attackPosition);
+        attackIndicator.SetActive(true);
+
         yield return new WaitForSeconds(.5f);
         StarAttacking();
     }
@@ -84,5 +93,6 @@ public class EnemyController : AttackController {
 
     void OnDrawGizmos() {
         Gizmos.DrawWireSphere(transform.position, attackRange);
+        Gizmos.DrawWireSphere((Vector2)transform.position + attackOffset, attackDamageRadius);
     }
 }

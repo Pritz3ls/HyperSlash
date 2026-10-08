@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d2c472e82746536418f63a3f110d66ca
+guid: ae428c0348650a94a9c89fc128fc1690
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 70
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -110,34 +110,34 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: abloh-image-removebg-preview_0
+      name: adad
       rect:
         serializedVersion: 2
-        x: 1
-        y: 46
+        x: 237
+        y: 71
         width: 235
-        height: 434
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        height: 120
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 45bd497d894a34b4193f9623d4bf0a85
-      internalID: -216515244
+      spriteID: 1970c7d86ab2fcd468b309caf2acec27
+      internalID: -93043894
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: abloh-image-removebg-preview_1
+      name: ada_0
       rect:
         serializedVersion: 2
-        x: 239
-        y: 45
-        width: 260
-        height: 450
+        x: 42
+        y: 50
+        width: 180
+        height: 388
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -145,8 +145,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6f200ae0bb1fa3748b98ca26b92989f9
-      internalID: 475636990
+      spriteID: ba03aa68fef7fc64baac7b544b75dc36
+      internalID: 716302683
       vertices: []
       indices: 
       edges: []
@@ -162,8 +162,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      abloh-image-removebg-preview_0: -216515244
-      abloh-image-removebg-preview_1: 475636990
+      Gemini_Generated_Image_a9pav1a9pav1a9pa-removebg-preview_0: 173590810
+      Gemini_Generated_Image_a9pav1a9pav1a9pa-removebg-preview_1: -1021443971
+      Gemini_Generated_Image_a9pav1a9pav1a9pa-removebg-preview_2: -1947911837
+      ada_0: 716302683
+      adad: -93043894
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

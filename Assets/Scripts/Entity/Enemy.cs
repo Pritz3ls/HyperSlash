@@ -8,9 +8,17 @@ public class Enemy : Entity {
     }
     private void Death() {
         ScoreManager.Instance.AddScore();
+        BloodManager.Instance.SpawnBloodPool(transform.position);
+        BloodManager.Instance.SpawnGib(transform.position);
+        DelayDisable();
     }
     private void FreezeOnDamage() {
-        FreezeFrame.Instance.Freeze(.2f);
+        FreezeFrame.Instance.Freeze(.1f, this.transform);
         flashEffect.Flash();
+    }
+    public void Sepuku() {
+        BloodManager.Instance.SpawnBloodPool(transform.position);
+        BloodManager.Instance.SpawnGib(transform.position);
+        DelayDisable();
     }
 }
