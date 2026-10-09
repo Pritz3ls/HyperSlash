@@ -11,6 +11,8 @@ public class Enemy : Entity {
         BloodManager.Instance.SpawnBloodPool(transform.position);
         BloodManager.Instance.SpawnGib(transform.position);
         DelayDisable();
+
+        SFXManager.Instance.PlayNinjaDeath();
     }
     private void FreezeOnDamage() {
         FreezeFrame.Instance.Freeze(.1f, this.transform);
@@ -20,5 +22,7 @@ public class Enemy : Entity {
         BloodManager.Instance.SpawnBloodPool(transform.position);
         BloodManager.Instance.SpawnGib(transform.position);
         DelayDisable();
+
+        SFXManager.Instance.PlayNinjaDeath();
     }
 }

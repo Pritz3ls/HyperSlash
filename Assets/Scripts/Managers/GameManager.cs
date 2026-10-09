@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour {
     [SerializeField] private GameState gameState = GameState.Idle;
     [SerializeField] private GameObject pressStartTextGameObject;
     [SerializeField] private GameObject titleElementsObject;
+    // [SerializeField] private GameObject gameOverBackground;
     [SerializeField] private TextMeshProUGUI pressStartTMP;
     [SerializeField] private float delayRestartDuration;
 
@@ -59,6 +60,7 @@ public class GameManager : MonoBehaviour {
     private void GameOver() {
         pressStartTMP.SetText("Click anywhere to restart");
         pressStartTextGameObject.SetActive(true);
+        // gameOverBackground.SetActive(true);
 
         gameState = GameState.GameOver;
         OnGameEnd?.Invoke();
@@ -67,15 +69,17 @@ public class GameManager : MonoBehaviour {
 
     private void HideRestartText() {
         pressStartTextGameObject.SetActive(false);
+        // gameOverBackground.SetActive(false);
     }
 
     IEnumerator DelayEnablePlayer() {
-        yield return new WaitForSecondsRealtime(delayRestartDuration - 1);
+        yield return new WaitForSecondsRealtime(delayRestartDuration - 2f);
         playerController.gameObject.SetActive(true);
     }
 
     public bool IsGameOver => gameState == GameState.GameOver;
     public Player GetPlayer => player;
+    public GameState GetState => gameState;
 }
 public enum GameState {
     Idle, Ingame, GameOver

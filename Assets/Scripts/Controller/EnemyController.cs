@@ -65,6 +65,7 @@ public class EnemyController : AttackController {
     IEnumerator AttackHeadsUp() {
         headsup = true;
         ReadyAttackEvent();
+        SFXManager.Instance.PlaySFX(2);
         attackPosition = GetTargetPosition();
         attackLineIndicator.SetAttackLine(transform.position, attackPosition);
         attackIndicator.SetActive(true);

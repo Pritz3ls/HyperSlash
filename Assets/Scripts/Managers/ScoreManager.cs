@@ -13,7 +13,7 @@ public class ScoreManager : MonoBehaviour {
     void Start() {
         Instance = this;
         GameManager.Instance.OnGameStart += EnableScoreUI;
-        GameManager.Instance.OnGameEnd += ResetScore;
+        GameManager.Instance.OnGameRestart += ResetScore;
     }
 
     private void EnableScoreUI() {

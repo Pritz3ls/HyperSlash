@@ -13,6 +13,8 @@ public class TitleEntity : Entity {
     private void Death() {
         visual.SetActive(false);
         gib.Play();
+
+        SFXManager.Instance.PlaySFX(6);
     }
     private void ShakeOnDamage() {
         CameraShaker.instance.StartShake(.1f, .2f);

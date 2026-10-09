@@ -21,12 +21,15 @@ public class PlayerController : AttackController {
             mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Xval = transform.position.x - mouseWorldPos.x;
             attackLineIndicator.SetAttackLine(transform.position, mouseWorldPos);
+
         } else if (Input.GetMouseButtonUp(0)) {
             lastPosition = transform.position;
             targetPosition = mouseWorldPos;
             AttackReleaseEvent();
             isAttacking = true;
             attackLineIndicator.ResetAttackLine();
+
+            SFXManager.Instance.PlaySFX(0);
         }
 
         if (isAttacking) {

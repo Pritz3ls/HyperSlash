@@ -36,7 +36,7 @@ public class EnemyManager : MonoBehaviour {
     }
 
     private void Update() {
-        if (Input.GetKeyDown(KeyCode.Space)) {
+        if (Input.GetKeyDown(KeyCode.N)) {
             NukeCurrentEnemy();
         }
     }
@@ -108,5 +108,7 @@ public class EnemyManager : MonoBehaviour {
         FreezeFrame.Instance.NuclearFrame();
         Debug.Log("Nuking enemy");
         StartEnemyManager();
+
+        SFXManager.Instance.PlaySFX(5);
     }
 }

@@ -20,6 +20,8 @@ public class Player : Entity {
         Debug.Log("Death");
         deathImpact.SetActive(true);
         DelayDisable();
+
+        SFXManager.Instance.PlaySFX(1);
     }
     private void DeathOnDamage(Vector2 source) {
         slashSprite.SetActive(false);
