@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class PlayerController : AttackController {
     [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private SpriteRenderer attackImpactRenderer;
     [SerializeField] private AttackLineIndicator attackLineIndicator;
     Vector2 lastPosition;
     Vector2 mouseWorldPos;
@@ -12,6 +13,7 @@ public class PlayerController : AttackController {
 
     void Update() {
         spriteRenderer.flipX = Xval > 0.01f ? true : false;
+        attackImpactRenderer.flipX = Xval > 0.01f ? true : false;
 
         // Vector2 mousePos = Input.mousePosition;
         if (Input.GetMouseButtonDown(0)) {

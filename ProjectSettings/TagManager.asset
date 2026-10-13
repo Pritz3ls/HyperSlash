@@ -53,3 +53,6 @@ TagManager:
   - name: Overlay
     uniqueID: 3470262009
     locked: 0
+  - name: Render
+    uniqueID: 4289144217
+    locked: 0
